@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+    <insert id="insertUser" parameterType="com.test.auth.vo.UserVO">
+        INSERT INTO USER
+        (
+            U_SEQ
+        , USERNAME
+        , NICKNAME
+        , PHONENO
+        , USERPW
+        , EMAIL
+        )VALUES
+            (
+                U_SEQ.NEXTVALUE
+            , #{username}
+            , #{nickname}
+            , #{phoneno}
+            , #{userpw}
+            , #{email}
+            )
+    </insert>
+
+    <select id="checkEmail" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM USER WHERE EMAIL = #{email}
+    </select>
+
+    <select id="checkPhoneNo" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM USER WHERE PHONENO = #{phoneNo}
+    </select>
+
+    <select id="checkNickname" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM USER WHERE NICKNAME = #{nickname}
+    </select>
+
+</mapper>
